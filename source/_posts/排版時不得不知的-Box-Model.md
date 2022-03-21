@@ -1,7 +1,7 @@
 ---
 title: 排版時不得不知的 Box Model
 date: 2022-03-21 11:07:34
-tags: CSS
+tags: [CSS, Box Model]
 description: 不知道各位在一開始接觸 CSS 時，有沒有類似的經驗。當拿到設計稿時，明明照著設計稿的尺寸去設定，但是呈現的排版總是不如人意，後來才發現原來自己對於 Box Model 並沒有充分的瞭解導致 margin, padding 用反了，或者沒有考慮到 border 的尺寸。而這些情境都凸顯了熟悉 Box Model 的重要性。就讓我們一起來瞭解 Box Model 吧！
 ---
 ## 前言
