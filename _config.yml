@@ -64,3 +64,13 @@ deploy:
   type: git
   repo: https://github.com/TimmyLin21/TimmyLin21.github.io
   branch: master
+# hexo-hide-posts
+hide_posts:
+  # 可以更改成喜歡的名字
+  filter: hidden
+  # 指定想要隱藏的位置，比如讓所有隱藏文在存擋頁面可見
+  # 常见的位置有：index, tag, category, archive, sitemap, feed, etc.
+  # 預設為全部隱藏
+  public_generators: []
+  # 阻止搜尋引擎搜尋
+  noindex: true

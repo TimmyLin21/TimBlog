@@ -2,7 +2,9 @@
 title: 計算元素寬高你需要知道的 Box Sizing
 date: 2022-03-21 15:09:37
 tags: [CSS, box-sizing, border-box]
-description:
+categories:
+- CSS
+description: 在看完排版時不得不知的 Box Model 後，我們瞭解一個 HTML 元素是如何組成的，但此時我們仍然不知道 HTML 元素的寬度以及高度是如何計算的，若使用了錯誤的計算方式，你可能會遭到設計師無情的追殺，因此為了你的人身安全就讓我們一起來瞭解 Box Model 吧！
 ---
 ## 前言
 
