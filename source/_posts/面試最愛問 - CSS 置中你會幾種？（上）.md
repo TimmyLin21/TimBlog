@@ -2,6 +2,8 @@
 title: 面試最愛問 - CSS 置中你會幾種？ （上）
 date: 2022-03-22 14:38:08
 tags: [CSS, text-align, margin, flexbox, position, block, inline, inline-block]
+categories:
+- CSS
 description: 相信做過許多面試考古題或者已經面試許多次的前端工程師們，多多少少都會遇過這一題，而每當被問到時，就要準備拿出自己存放已久的壓箱寶讓面試官嘖嘖稱讚~~大失所望~~。方法雖然有許多種，但其實有一些在實際應用上並不是這麼常見又或者存在著一些缺點。這裡就來帶大家瞭解實際應用上比較常使用的方法吧！
 ---
 ## 前言
