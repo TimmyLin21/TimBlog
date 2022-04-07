@@ -4,11 +4,13 @@ date: 2022-04-05 14:18:23
 tags: [CSS, Grid]
 categories:
 - CSS
-description: 隨著瀏覽器的支援度越來越高， CSS Grid 成為除了 flexbox 之外的另一種排版方法，根據 [State of CSS 2021](https://2021.stateofcss.com/en-US/features/layout/#grid) 的市調， CSS Grid 的使用率從 2019 年的 54.8% 慢慢增加到 2021年的 83.1%，由此可知學會 CSS Grid 的重要性是多麽地高，因此就讓我們來瞭解如何使用 CSS Grid 吧！
+description: 隨著瀏覽器的支援度越來越高， CSS Grid 成為除了 flexbox 之外的另一種排版方法，根據 State of CSS 2021 的市調， CSS Grid 的使用率從 2019 年的 54.8% 慢慢增加到 2021年的 83.1%，由此可知學會 CSS Grid 的重要性是多麽地高，因此就讓我們來瞭解如何使用 CSS Grid 吧！
 ---
 ## 前言
 
 隨著瀏覽器的支援度越來越高， CSS Grid 成為除了 flexbox 之外的另一種排版方法，根據 [State of CSS 2021](https://2021.stateofcss.com/en-US/features/layout/#grid) 的市調， CSS Grid 的使用率從 2019 年的 54.8% 慢慢增加到 2021年的 83.1%，由此可知學會 CSS Grid 的重要性是多麽地高，因此就讓我們來瞭解如何使用 CSS Grid 吧！
+
+![你看，又有新的排版方法！](https://i.imgur.com/4ScPry7.jpg)
 
 ## 基本結構
 
