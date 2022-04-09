@@ -15,7 +15,7 @@ Webpack 是一個模組化打包工具，可以將專案中多個 js 檔案編�
 
 ## 初始化設定
 
-在專案中可以先在 terminal 輸入 `npm init` 進行 npm 的初始化，之後再輸入 `npm i webpack webpack-cli webpack-dev-server -D` 進行 webpack，webpack-cli 以及 webpack-dev-server 的安裝。會需要額外安裝 webpack-cli 以及 webpack-dev-server 的原因是因為在後續開發上進行打包或者建立伺服器時會使用到。在安裝完成後記得在 package.json 進行指令的設定，名稱可以自訂，不過我習慣用 build 和 serve 來代表打包與建立伺服器。除此之外，也需要在專案中建置 webpack.config.js ，這個檔案主要是用來做一些客製化的設定，切記要將此檔案放置在最外層不然在後續的編譯上會報錯。以下是針對 devServer 的一些設定。其中 static, compress 和 port 都是預設不太需要改動，而 hot 的作用是每當 dist 內的資源進行變動時，瀏覽器就會自動重新整理。
+在專案中可以先在 terminal 輸入 `npm init` 進行 npm 的初始化，之後再輸入 `npm i webpack webpack-cli webpack-dev-server -D` 進行 webpack，webpack-cli 以及 webpack-dev-server 的安裝。會需要額外安裝 webpack-cli 以及 webpack-dev-server 的原因是因為在後續開發上進行打包或者建立伺服器時會使用到。在安裝完成後記得在 package.json 進行指令的設定，名稱可以自訂，不過我習慣用 build 和 serve 來代表打包與建立伺服器。除此之外，也需要在專案中建置 webpack.config.js ，這個檔案主要是用來做一些客製化的設定，切記要將此檔案放置在根目錄不然在後續的編譯上會報錯。以下是針對 devServer 的一些設定。其中 static, compress 和 port 都是預設不太需要改動，而 hot 的作用是每當 dist 內的資源進行變動時，瀏覽器就會自動重新整理。
 
 ```js
 // package.json
@@ -30,6 +30,7 @@ Webpack 是一個模組化打包工具，可以將專案中多個 js 檔案編�
 ```
 
 ```js
+// webpack.config.js
 module.exports = {
   devServer: {
     static: {
@@ -44,12 +45,12 @@ module.exports = {
 
 ## 基本架構
 
-而 webpack 若要進行客製化，需要在專案中建置 webpack.config.js ，切記要將此檔案放置在最外層不然在後續的編譯上會報錯。其中 config 的主要架構可以分為
+Webpack.config 的主要架構可以分為
 
 - Entry - 主要用來設定檔案的進入點，就像是 vue cli 專案中的 index.js。
 - Output - 輸出檔案的位置，預設為一個 dist 的資料夾。
-- Loaders - webpack擴充的辨識器，因為 webpack 預設只看得懂 js 檔案，如果想要編譯其他檔案，就必須在這裡做設定。
-- Plugins - webpack擴充的套件，像是 babel, css檔案編譯等等，都會在這個區域做設定。
+- Loaders - webpack擴充的辨識器，因為 webpack 預設只看得懂 js 檔案，如果想要讓 webpack 能夠識別其他檔案，就必須在這裡做設定。
+- Plugins - webpack擴充的套件，像是 html, css檔案編譯等等，都會在這個區域做設定。
 - Mode - 開發模式/ 產品模式
 
 在接下來的部分會針對各個區塊做常見設定的介紹。
@@ -83,7 +84,7 @@ module.exports = {
 
 ## Output
 
-Output 在預設的情況下，會在子目錄生成一個 dist 的資料夾，然後在裡面就會有打包過的 js 檔案，而若是另外有使用插件也能夠生成 html 或者 css 檔案，這在之後插件的部分會另外做介紹。以下為簡易的目錄結構與 config 檔的設定。需要取用 path 去取得根目錄的位置，而資料夾名稱可以自訂，至於 filename 就是打包後的 js 要如何命名。這邊可以注意到有加入 [hash] 到檔案名稱中，會這樣設定是用來確保每一次生成的檔名都是獨立的，就像是目錄結構裡的 .js，這樣當用戶在讀取時，就不會因為快取的關係而讀到舊的檔案。
+Output 在預設的情況下，會在子目錄生成一個 dist 的資料夾，然後在裡面就會有打包過的 js 檔案，而若是另外有使用插件也能夠生成 html 或者 css 檔案，插件的部分這在之後會另外做介紹。以下為簡易的目錄結構與 config 檔的設定。需要取用 path 去取得根目錄的位置，而資料夾名稱可以自訂，至於 filename 就是打包後的 js 要如何命名。這邊可以注意到有加入 [hash] 到檔案名稱中，會這樣設定是用來確保每一次生成的檔名都是獨立的，就像是目錄結構裡的 .js，這樣當用戶在讀取時，就不會因為快取的關係而讀到舊的檔案。
 
 ```markdown
 <!-- 目錄結構 -->
@@ -126,7 +127,7 @@ module.exports = {
 - sass-loader - 方便且系統化管理的 css 擴充語法
 - babel-loader - 將 js 轉換成支援舊瀏覽器的語法
 
-那在安裝時記得 postcss， sass, babel 和 autoprefixer 也要安裝，不要只安裝了 postcss-loader, babel-loader 和 sass-loader，下面是 webpack.config.js, postcss.config.js, babel.config.json 還有 package.json 的設定。其中 webpack 會針對特定檔案，如 postcss.config.js 或者 babel.config.json 去根目錄搜尋，這樣的好處是有關 postcss 或者 babel 相關的設定就不會和其他混在一起。而其中有一個 MiniCssExtractPlugin 是下一個階段會介紹的 plugin，在這裡先暴雷，這主要是用來生成 css 檔用的，因為預設的css會直接寫在 html 裡。需要注意的是預設會是用 style-loader 來處理 css，而這會和 MiniCssExtractPlugin 衝突，因此只能二選一。
+在安裝時記得 postcss， sass, babel 和 autoprefixer 也要安裝，不要只有安裝 postcss-loader, babel-loader 和 sass-loader。下面是 webpack.config.js, postcss.config.js, babel.config.json 還有 package.json 的設定。其中 webpack 會針對特定檔案，如 postcss.config.js 或者 babel.config.json 去根目錄搜尋，這樣的好處是有關 postcss 或者 babel 相關的設定就不會和其他混在一起。而其中有一個 MiniCssExtractPlugin 是下一個階段會介紹的 plugin，在這裡先暴雷，這主要是用來生成 css 檔用的，因為預設的css會直接寫在 html 裡。需要注意的是預設會是用 style-loader 來處理 css，而這會和 MiniCssExtractPlugin 衝突，因此只能二選一。
 
 ```js
 // webpack.config.js
