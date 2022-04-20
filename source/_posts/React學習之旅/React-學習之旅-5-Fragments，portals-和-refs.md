@@ -140,6 +140,25 @@ function Component() {
 export default Component;
 ```
 
+若是想要取得的節點被包覆於元件中，我們可以使用 forwardRef() 去取得更深層的節點，只需要將原本的 Component funciton 改寫成 React.forwardRef() 的形式，並帶入第二個參數 ref，而這個 ref 就是在父層中使用 useRef() 所取得的值。最後記得在節點上加上 `ref={ref}` 就能夠取得更深層的節點囉！
+
+```js
+import React from "react";
+
+import classes from "./Input.module.css";
+
+const Input = React.forwardRef((props,ref) => {
+  return (
+    <div className={`${classes.input} ${props.className}`} >
+      <label htmlFor={props.input.id}>{props.label}</label>
+      <input ref={ref} {...props.input} />
+    </div>
+  );
+});
+
+export default Input;
+```
+
 使用 Refs 我們可以更改畫面上的值而不需要重新渲染，相對於使用 State 進行資料管理，又被稱為 Uncontrolled components，因為這樣的操作方式是不經由 React 處理的，而是直接對真實的 DOM 進行修改，而使用 State 進行資料管理的 Components 則被稱為 Controlled components。雖然使用 Refs 比較簡單也可以讓程式碼比較精簡，但還是有一些限制，例如即時的表單驗證就無法完成，而更多的限制可以參考[這篇文章](https://goshacmd.com/controlled-vs-uncontrolled-inputs-react/)。
 
 ## 結語

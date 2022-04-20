@@ -180,7 +180,7 @@ export default component;
 ## UI components
 
 而有時我們會遇到某些 component 有共用的樣式，例如： card, modal 或者 alert 等等。這時我們就可以選擇將共用的部分取出來製作成 UI components，這樣就能夠讓程式碼更為精簡而且也避免重複生成類似的元件。在以下的例子中，會以一個 card 的 UI component 做介紹。因為 card 內部會有其他結構，因此我們會以 props 的方式傳入，
-在 className 的部分，我們需要將標籤上的 className 也加入到內部的 className 中，因此需要用字串組合的方式動態生成新的 className，而 `props.children` 則是用於保留在父層中 Card 元件內部的結構，也就是 h2 和 Component。這樣，以後想要製作出相同風格的 Card，只要在最外層加上 Card 的 tag，就可以快速的完成了喔！
+在 className 的部分，我們需要將標籤上的 className 也加入到內部的 className 中，因此需要用字串組合的方式動態生成新的 className，而 `props.children` 則是用於保留在父層中 Card 元件內部的結構，也就是 h2 和 Component。這樣以後想要製作出相同風格的 Card，只要在最外層加上 Card 的 tag，就可以快速的完成了喔！
 
 ```js
 // UI component - card
@@ -211,6 +211,40 @@ function App() {
 }
 
 export default App;
+```
+
+這裡還有一個額外的小技巧，像是 Input 這種需要傳入許多參數的 UI Component，就可以使用展開運算子的方式帶入 props 的屬性，這樣就算未來想要新增屬性也不用替地回去 Input 元件內做修改囉！
+
+```js
+// Input
+import React from "react";
+
+import classes from "./Input.module.css";
+
+const Input = React.forwardRef((props,ref) => {
+  return (
+    <div className={`${classes.input} ${props.className}`} >
+      <label htmlFor={props.input.id}>{props.label}</label>
+      <input ref={ref} {...props.input} />
+    </div>
+  );
+});
+
+export default Input;
+```
+
+```js
+<Input
+  input={{
+    id: "amount",
+    type: "number",
+    min: "1",
+    max: "5",
+    step: "1",
+    defaultValue: "1",
+  }}
+  label="Amount"
+/>
 ```
 
 ## 結語
