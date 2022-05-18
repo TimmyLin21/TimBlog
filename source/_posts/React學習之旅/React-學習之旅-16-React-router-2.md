@@ -1,7 +1,7 @@
 ---
 title: React 學習之旅(16) - React router(2)
 date: 2022-05-04 21:38:17
-tags: [React, React router, NotFound, useHistory, Prompt, Query Parameters, useRouteMatch]
+tags: [React, React router, NotFound, useHistory, Prompt, Query Parameters]
 categories:
   - React 學習之旅
 description: 上一篇文章中，已經為大家介紹 React router 的基本應用，而這次的分享主要是一些比較進階的使用方法，例如： NotFound、useHistory 和 Prompt 等等的使用方法，就讓我們一起來瞭解吧！
